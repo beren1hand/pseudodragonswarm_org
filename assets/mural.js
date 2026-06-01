@@ -49,7 +49,7 @@
   var MTN_SAFE = ['🗻', '🏔️', '⛰️'],            MTN_NEW = ['🛘'];
   var SKY_SAFE = ['🦅', '🦇', '💫', '🌩️', '🌧️', '⛈️', '🎈', '🕊️', '🪐'], SKY_NEW = ['🐦‍🔥']; // 🛸 is intentionally NOT here — it lives only in the last 12 columns
   var FOR_SAFE = ['👑', '🦄', '🦂', '🦖', '🦕', '🐍', '🦌', '🎄', '🎪', '🏰', '🗿', '🔮', '⚱️', '🏺', '🧚', '🧌'];
-  var FOR_NEW  = ['🪎', '🫈', '🧚‍♂️', '🧚‍♀️'];
+  var FOR_NEW  = ['🪎', '🧚‍♂️', '🧚‍♀️']; // 🫈 Bigfoot is NOT here — he only lurks in the last 12 forest columns
   var HOUSE    = ['🏡', '🏕️'];
 
   function generate() {
@@ -87,6 +87,8 @@
     placeGap(g, [4, 5, 6, 7], ['🪾'], ri(2, 10), fcols, 7);
     // a dwelling at least every 6 columns (placed last, onto tree cells, so nothing else is clobbered)
     for (var hc = ri(1, 5); hc < W; hc += ri(4, 6)) placeHouse(g, hc);
+    // Bigfoot lurks in the last 12 forest columns — but only on browsers that can render him
+    if (emojiSupported('🫈')) ensureInForest(g, '🫈', W - 12, W - 1);
 
     // sky: moon, then dragons (always lots, off the volcanoes), a few rare sky-things, clouds, sparkles
     placeSky(g, ['🌙'], 1, volc, false);
@@ -171,6 +173,15 @@
         g[rr][cc] = em; return;
       }
     g[0][hi] = em; // last resort
+  }
+
+  // place `em` on a tree cell in the forest within columns [lo,hi]
+  function ensureInForest(g, em, lo, hi) {
+    for (var t = 0; t < 200; t++) {
+      var c = ri(lo, hi), r = ri(4, 7);
+      if (g[r][c] === '🌲' || g[r][c] === '🌳') { g[r][c] = em; return; }
+    }
+    g[5][hi] = em; // last resort
   }
 
   function placeHouse(g, c) {                 // drop a dwelling onto a tree cell in column c
