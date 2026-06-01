@@ -85,8 +85,8 @@
     });
     placeGap(g, [4, 5, 6, 7], ['🪨'], ri(4, 12), fcols, 7);
     placeGap(g, [4, 5, 6, 7], ['🪾'], ri(2, 10), fcols, 7);
-    // a dwelling at least every 8 columns (placed last, onto tree cells, so nothing else is clobbered)
-    for (var hc = ri(2, 6); hc < W; hc += ri(5, 8)) placeHouse(g, hc);
+    // a dwelling at least every 6 columns (placed last, onto tree cells, so nothing else is clobbered)
+    for (var hc = ri(1, 5); hc < W; hc += ri(4, 6)) placeHouse(g, hc);
 
     // sky: moon, then dragons (always lots, off the volcanoes), a few rare sky-things, clouds, sparkles
     placeSky(g, ['🌙'], 1, volc, false);
