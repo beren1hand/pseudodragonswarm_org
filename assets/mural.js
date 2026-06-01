@@ -61,7 +61,7 @@
     var decid = 0.45 + Math.random() * 0.35;
     for (var c = 0; c < W; c++) {
       g[0][c] = g[1][c] = g[2][c] = SKY;
-      g[3][c] = Math.random() < 0.6 ? '🗻' : pick(mtnPool);   // ridge: mostly Fuji, some variety
+      g[3][c] = pick(mtnPool);                                // ridge: totally random mountains
       for (var r2 = 4; r2 < 8; r2++) g[r2][c] = Math.random() < decid ? '🌳' : '🌲';
       g[8][c] = GND;
     }
@@ -74,7 +74,7 @@
     var fcols = [];
     var zones = [ri(15, 40), ri(55, 85), ri(105, 135), ri(145, 172)];
     ['💎', '🦉', '🍄', '🥚'].forEach(function (em, i) { g[ri(4, 7)][zones[i]] = em; fcols.push(zones[i]); });
-    placeGap(g, [4, 5, 6, 7], ['🏡', '🏠'], ri(1, 4), fcols, 28);
+    placeGap(g, [4, 5, 6, 7], ['🏡', '🏠'], ri(3, 7), fcols, 16);
     sample(forPool, ri(2, 5)).forEach(function (em) {
       for (var t = 0; t < 800; t++) {
         var c = ri(0, W - 1), r = ri(4, 7), ok = true;
@@ -93,7 +93,7 @@
         for (var cc = 0; cc < W && dn < 2; cc++)
           if (g[rr][cc] === SKY) { g[rr][cc] = '🐉'; dn++; }
     }
-    placeSky(g, skyPool, ri(3, 8), volc, false);            // eagle, bat, ufo, planet, weather...
+    placeSky(g, skyPool, ri(5, 11), volc, false);           // eagle, bat, ufo, planet, weather...
     placeSky(g, ['☁️'], ri(8, 26), volc, false);
     placeSky(g, ['✨'], ri(22, 70), volc, false);
 
