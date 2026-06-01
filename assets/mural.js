@@ -48,8 +48,9 @@
   // ---- palettes (safe = Unicode <=14, universal; new = feature-detected) ----
   var MTN_SAFE = ['🗻', '🏔️', '⛰️'],            MTN_NEW = ['🛘'];
   var SKY_SAFE = ['🦅', '🦇', '💫', '🌩️', '🌧️', '⛈️', '🛸', '🎈', '🕊️', '🪐'], SKY_NEW = ['🐦‍🔥'];
-  var FOR_SAFE = ['👑', '🦄', '🦂', '🦖', '🦕', '🐍', '🦌', '🎄', '🏕️', '🏰', '🗿', '🔮', '⚱️', '🏺', '🧚', '🧌'];
+  var FOR_SAFE = ['👑', '🦄', '🦂', '🦖', '🦕', '🐍', '🦌', '🎄', '🎪', '🏰', '🗿', '🔮', '⚱️', '🏺', '🧚', '🧌'];
   var FOR_NEW  = ['🪎', '🫈', '🧚‍♂️', '🧚‍♀️'];
+  var HOUSE    = ['🏡', '🏕️'];
 
   function generate() {
     var mtnPool = buildPool(MTN_SAFE, MTN_NEW);
@@ -74,7 +75,6 @@
     var fcols = [];
     var zones = [ri(15, 40), ri(55, 85), ri(105, 135), ri(145, 172)];
     ['💎', '🦉', '🍄', '🥚'].forEach(function (em, i) { g[ri(4, 7)][zones[i]] = em; fcols.push(zones[i]); });
-    placeGap(g, [4, 5, 6, 7], ['🏡', '🏠'], ri(3, 7), fcols, 16);
     sample(forPool, ri(4, 8)).forEach(function (em) {
       var rLo = em === '🧌' ? 5 : 4;                          // keep the troll out of the top row (merges with mountains)
       for (var t = 0; t < 800; t++) {
@@ -85,6 +85,8 @@
     });
     placeGap(g, [4, 5, 6, 7], ['🪨'], ri(4, 12), fcols, 7);
     placeGap(g, [4, 5, 6, 7], ['🪾'], ri(2, 10), fcols, 7);
+    // a dwelling at least every 8 columns (placed last, onto tree cells, so nothing else is clobbered)
+    for (var hc = ri(2, 6); hc < W; hc += ri(5, 8)) placeHouse(g, hc);
 
     // sky: moon, then dragons (always lots, off the volcanoes), a few rare sky-things, clouds, sparkles
     placeSky(g, ['🌙'], 1, volc, false);
@@ -153,6 +155,13 @@
         g[r][c] = '🐉'; return;
       }
     g[0][c] = '🐉'; // last resort: never leave a 5-col run dragonless
+  }
+
+  function placeHouse(g, c) {                 // drop a dwelling onto a tree cell in column c
+    var rows = [4, 5, 6, 7];
+    for (var i = 3; i > 0; i--) { var j = ri(0, i), tmp = rows[i]; rows[i] = rows[j]; rows[j] = tmp; }
+    for (var k = 0; k < 4; k++)
+      if (g[rows[k]][c] === '🌲' || g[rows[k]][c] === '🌳') { g[rows[k]][c] = pick(HOUSE); return; }
   }
 
   function apply() {
