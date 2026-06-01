@@ -47,7 +47,7 @@
 
   // ---- palettes (safe = Unicode <=14, universal; new = feature-detected) ----
   var MTN_SAFE = ['🗻', '🏔️', '⛰️'],            MTN_NEW = ['🛘'];
-  var SKY_SAFE = ['🦅', '🦇', '💫', '🌩️', '🌧️', '⛈️', '🛸', '💸', '🎈', '🕊️', '🪐'], SKY_NEW = ['🐦‍🔥'];
+  var SKY_SAFE = ['🦅', '🦇', '💫', '🌩️', '🌧️', '⛈️', '🛸', '🎈', '🕊️', '🪐'], SKY_NEW = ['🐦‍🔥'];
   var FOR_SAFE = ['👑', '🦄', '🦂', '🦖', '🦕', '🐍', '🦌', '🎄', '🏕️', '🏰', '🗿', '🔮', '⚱️', '🏺', '🧚', '🧌'];
   var FOR_NEW  = ['🪎', '🫈', '🧚‍♂️', '🧚‍♀️'];
 
@@ -76,8 +76,9 @@
     ['💎', '🦉', '🍄', '🥚'].forEach(function (em, i) { g[ri(4, 7)][zones[i]] = em; fcols.push(zones[i]); });
     placeGap(g, [4, 5, 6, 7], ['🏡', '🏠'], ri(3, 7), fcols, 16);
     sample(forPool, ri(4, 8)).forEach(function (em) {
+      var rLo = em === '🧌' ? 5 : 4;                          // keep the troll out of the top row (merges with mountains)
       for (var t = 0; t < 800; t++) {
-        var c = ri(0, W - 1), r = ri(4, 7), ok = true;
+        var c = ri(0, W - 1), r = ri(rLo, 7), ok = true;
         for (var k = 0; k < fcols.length; k++) if (Math.abs(c - fcols[k]) < 8) { ok = false; break; }
         if (ok) { g[r][c] = em; fcols.push(c); break; }
       }
@@ -87,11 +88,12 @@
 
     // sky: moon, then dragons (always lots, off the volcanoes), a few rare sky-things, clouds, sparkles
     placeSky(g, ['🌙'], 1, volc, false);
-    var dn = placeSky(g, ['🐉'], ri(18, 30), volc, true);
-    if (dn < 2) {                                            // dragons are the point — hard floor of 2
-      for (var rr = 0; rr < 3 && dn < 2; rr++)
-        for (var cc = 0; cc < W && dn < 2; cc++)
-          if (g[rr][cc] === SKY) { g[rr][cc] = '🐉'; dn++; }
+    placeSky(g, ['🐉'], ri(18, 30), volc, true);
+    // dragons are the point — never a run of 5 columns without one
+    var last = -1;
+    for (var c2 = 0; c2 < W; c2++) {
+      if (g[0][c2] === '🐉' || g[1][c2] === '🐉' || g[2][c2] === '🐉') last = c2;
+      else if (c2 - last >= 5) { placeDragonInCol(g, c2, volc); last = c2; }
     }
     placeSky(g, skyPool, ri(8, 14), volc, true);            // eagle, bat, ufo... kept off the volcanoes
     placeSky(g, ['☁️'], ri(8, 26), volc, false);
@@ -134,6 +136,23 @@
       g[r][c] = pick(ems); done++;
     }
     return done;
+  }
+
+  function nearVolc(c, volc) {
+    for (var k = 0; k < volc.length; k++) if (Math.abs(c - volc[k]) < 4) return true;
+    return false;
+  }
+  // place a dragon in column c; relax constraints until one lands
+  function placeDragonInCol(g, c, volc) {
+    var passes = [[true, true], [true, false], [false, false]]; // [keep no-adjacency, avoid volcano]
+    for (var p = 0; p < passes.length; p++)
+      for (var r = 0; r < 3; r++) {
+        if (g[r][c] !== SKY) continue;
+        if (passes[p][0] && !clear8(g, r, c)) continue;
+        if (passes[p][1] && nearVolc(c, volc)) continue;
+        g[r][c] = '🐉'; return;
+      }
+    g[0][c] = '🐉'; // last resort: never leave a 5-col run dragonless
   }
 
   function apply() {
