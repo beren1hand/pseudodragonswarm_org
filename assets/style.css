@@ -1,0 +1,40 @@
+:root{
+  --bg:#0f1420; --ink:#e8e3d3; --muted:#9aa3b2;
+  --ember:#ff7a3c; --gold:#ffcf6b; --line:#27314a; --code:#0c1220;
+}
+*{ box-sizing:border-box }
+html{ -webkit-text-size-adjust:100% }
+body{
+  margin:0;
+  background:radial-gradient(1100px 560px at 50% -8%, #1b2440 0%, var(--bg) 60%);
+  color:var(--ink);
+  font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+.wrap{ max-width:720px; margin:0 auto; padding:2.2rem 1.2rem 3rem }
+
+h1{ font-size:2rem; margin:.6rem 0 .2rem; letter-spacing:.3px }
+h2{ font-size:1.15rem; margin:2rem 0 .4rem; color:var(--gold) }
+p{ margin:.6rem 0 }
+strong{ color:#fff }
+a{ color:var(--ember); text-decoration:none }
+a:hover{ text-decoration:underline }
+ul{ padding-left:1.1rem } li{ margin:.3rem 0 }
+hr{ border:0; border-top:1px solid var(--line); margin:2.2rem 0 }
+
+code{ background:var(--code); border:1px solid var(--line); border-radius:5px;
+  padding:.1em .35em; font-size:.92em }
+pre{ background:var(--code); border:1px solid var(--line); border-radius:10px;
+  padding:1rem; overflow-x:auto }
+pre code{ background:none; border:0; padding:0 }
+
+/* The all-emoji hero mosaic — kept on a strict monospace grid. */
+.mural{
+  font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",monospace;
+  font-size:clamp(15px, 4.6vw, 30px);
+  line-height:1.05; letter-spacing:0; text-align:center; white-space:pre;
+  background:#0b0f1a; border:1px solid var(--line); border-radius:14px;
+  padding:1rem .5rem; margin:0 0 1.4rem; overflow-x:auto;
+}
+
+.foot{ margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--line);
+  color:var(--muted); font-size:.9rem; text-align:center }

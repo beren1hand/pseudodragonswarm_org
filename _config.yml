@@ -1,0 +1,7 @@
+title: Pseudodragon Swarm
+description: >-
+  A tiny, self-hosted swarm of AI agents you run on your own Linux box — the Unix way.
+url: "https://pseudodragonswarm.org"
+baseurl: ""
+
+# Deliberately simple: our own _layouts/, no external theme or plugins.
