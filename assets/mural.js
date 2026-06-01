@@ -98,6 +98,7 @@
       else if (c2 - last >= 5) { placeDragonInCol(g, c2, volc); last = c2; }
     }
     placeSky(g, skyPool, ri(8, 14), volc, true);            // eagle, bat, ufo... kept off the volcanoes
+    ensureInSky(g, '🛸', W - 12, W - 1, volc);              // always a UFO somewhere in the last 12 columns
     placeSky(g, ['☁️'], ri(8, 26), volc, false);
     placeSky(g, ['✨'], ri(22, 70), volc, false);
 
@@ -155,6 +156,21 @@
         g[r][c] = '🐉'; return;
       }
     g[0][c] = '🐉'; // last resort: never leave a 5-col run dragonless
+  }
+
+  // ensure `em` appears in the sky within columns [lo,hi]; relax constraints until it lands
+  function ensureInSky(g, em, lo, hi, volc) {
+    for (var r = 0; r < 3; r++) for (var c = lo; c <= hi; c++) if (g[r][c] === em) return;
+    var passes = [[true, true], [true, false], [false, false]];
+    for (var p = 0; p < passes.length; p++)
+      for (var t = 0; t < 120; t++) {
+        var cc = ri(lo, hi), rr = ri(0, 2);
+        if (g[rr][cc] !== SKY) continue;
+        if (passes[p][0] && !clear8(g, rr, cc)) continue;
+        if (passes[p][1] && nearVolc(cc, volc)) continue;
+        g[rr][cc] = em; return;
+      }
+    g[0][hi] = em; // last resort
   }
 
   function placeHouse(g, c) {                 // drop a dwelling onto a tree cell in column c
