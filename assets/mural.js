@@ -47,7 +47,7 @@
 
   // ---- palettes (safe = Unicode <=14, universal; new = feature-detected) ----
   var MTN_SAFE = ['🗻', '🏔️', '⛰️'],            MTN_NEW = ['🛘'];
-  var SKY_SAFE = ['🦅', '🦇', '💫', '🌩️', '🌧️', '⛈️', '🛸', '🎈', '🕊️', '🪐'], SKY_NEW = ['🐦‍🔥'];
+  var SKY_SAFE = ['🦅', '🦇', '💫', '🌩️', '🌧️', '⛈️', '🎈', '🕊️', '🪐'], SKY_NEW = ['🐦‍🔥']; // 🛸 is intentionally NOT here — it lives only in the last 12 columns
   var FOR_SAFE = ['👑', '🦄', '🦂', '🦖', '🦕', '🐍', '🦌', '🎄', '🎪', '🏰', '🗿', '🔮', '⚱️', '🏺', '🧚', '🧌'];
   var FOR_NEW  = ['🪎', '🫈', '🧚‍♂️', '🧚‍♀️'];
   var HOUSE    = ['🏡', '🏕️'];
