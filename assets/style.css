@@ -30,10 +30,10 @@ pre code{ background:none; border:0; padding:0 }
 /* The all-emoji hero mosaic — kept on a strict monospace grid. */
 .mural{
   font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",monospace;
-  font-size:clamp(15px, 4.6vw, 30px);
-  line-height:1.05; letter-spacing:0; text-align:center; white-space:pre;
+  font-size:clamp(15px, 5vw, 34px);
+  line-height:1.04; letter-spacing:0; text-align:center; white-space:pre;
   background:#0b0f1a; border:1px solid var(--line); border-radius:14px;
-  padding:1rem .5rem; margin:0 0 1.4rem; overflow-x:auto;
+  padding:.9rem .25rem; margin:0 0 1.4rem; overflow-x:auto;
 }
 
 .foot{ margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--line);
