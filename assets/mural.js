@@ -48,9 +48,12 @@
   // ---- palettes (safe = Unicode <=14, universal; new = feature-detected) ----
   var MTN_SAFE = ['🗻', '🏔️', '⛰️'],            MTN_NEW = ['🛘'];
   var SKY_SAFE = ['🦅', '🦇', '💫', '🌩️', '🌧️', '⛈️', '🎈', '🕊️', '🪐'], SKY_NEW = ['🐦‍🔥']; // 🛸 is intentionally NOT here — it lives only in the last 12 columns
-  var FOR_SAFE = ['👑', '🦄', '🦂', '🦖', '🦕', '🐍', '🦌', '🎄', '🎪', '🏰', '🗿', '🔮', '⚱️', '🏺', '🧚', '🧌'];
-  var FOR_NEW  = ['🪎', '🧚‍♂️', '🧚‍♀️']; // 🫈 Bigfoot is NOT here — he only lurks in the last 12 forest columns
+  var FOR_SAFE = ['👑', '🦄', '🦂', '🐍', '🦌', '🎄', '🎪', '🏰', '🗿', '🔮', '⚱️', '🏺', '🧚', '🧌'];
+  var FOR_NEW  = ['🪎', '🧚‍♂️', '🧚‍♀️'];
   var HOUSE    = ['🏡', '🏕️'];
+  // "super specials" — exiled to the last 12 columns only. Sky: just the saucer.
+  var SUPER_FOREST_SAFE = ['🦖', '🦕'];   // dinos — always supported
+  var SUPER_FOREST_NEW  = ['🫈'];          // Bigfoot — gated (Unicode 17)
 
   function generate() {
     var mtnPool = buildPool(MTN_SAFE, MTN_NEW);
@@ -87,8 +90,8 @@
     placeGap(g, [4, 5, 6, 7], ['🪾'], ri(2, 10), fcols, 7);
     // a dwelling at least every 6 columns (placed last, onto tree cells, so nothing else is clobbered)
     for (var hc = ri(1, 5); hc < W; hc += ri(4, 6)) placeHouse(g, hc);
-    // Bigfoot lurks in the last 12 forest columns — but only on browsers that can render him
-    if (emojiSupported('🫈')) ensureInForest(g, '🫈', W - 12, W - 1);
+    // a forest super-special (dino, or Bigfoot where supported) lurks in the last 12 columns — rotates per load
+    ensureInForest(g, pick(buildPool(SUPER_FOREST_SAFE, SUPER_FOREST_NEW)), W - 12, W - 1);
 
     // sky: moon, then dragons (always lots, off the volcanoes), a few rare sky-things, clouds, sparkles
     placeSky(g, ['🌙'], 1, volc, false);
