@@ -75,7 +75,7 @@
     var zones = [ri(15, 40), ri(55, 85), ri(105, 135), ri(145, 172)];
     ['💎', '🦉', '🍄', '🥚'].forEach(function (em, i) { g[ri(4, 7)][zones[i]] = em; fcols.push(zones[i]); });
     placeGap(g, [4, 5, 6, 7], ['🏡', '🏠'], ri(3, 7), fcols, 16);
-    sample(forPool, ri(2, 5)).forEach(function (em) {
+    sample(forPool, ri(4, 8)).forEach(function (em) {
       for (var t = 0; t < 800; t++) {
         var c = ri(0, W - 1), r = ri(4, 7), ok = true;
         for (var k = 0; k < fcols.length; k++) if (Math.abs(c - fcols[k]) < 8) { ok = false; break; }
@@ -93,7 +93,7 @@
         for (var cc = 0; cc < W && dn < 2; cc++)
           if (g[rr][cc] === SKY) { g[rr][cc] = '🐉'; dn++; }
     }
-    placeSky(g, skyPool, ri(5, 11), volc, true);            // eagle, bat, ufo... kept off the volcanoes
+    placeSky(g, skyPool, ri(8, 14), volc, true);            // eagle, bat, ufo... kept off the volcanoes
     placeSky(g, ['☁️'], ri(8, 26), volc, false);
     placeSky(g, ['✨'], ri(22, 70), volc, false);
 
