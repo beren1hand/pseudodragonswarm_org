@@ -46,13 +46,13 @@
   }
 
   // ---- palettes (safe = Unicode <=14, universal; new = feature-detected) ----
-  var MTN_SAFE = ['🗻', '🏔️', '⛰️'],            MTN_NEW = ['🛘'];
+  var PEAK_SAFE = ['🏔️', '⛰️', '🏕️', '⛩️', '🏯', '🛖', '🚠', '🎿', '🐐'], PEAK_NEW = ['🛘'];
   var SKY_SAFE = ['🦅', '🦇', '💫', '🌩️', '🌧️', '⛈️', '🛸', '💸', '🎈', '🕊️', '🪐'], SKY_NEW = ['🐦‍🔥'];
   var FOR_SAFE = ['👑', '🦄', '🦂', '🦖', '🦕', '🐍', '🦌', '🎄', '🏕️', '🏰', '🗿', '🔮', '⚱️', '🏺', '🧚', '🧌'];
   var FOR_NEW  = ['🪎', '🫈', '🧚‍♂️', '🧚‍♀️'];
 
   function generate() {
-    var mtnPool = buildPool(MTN_SAFE, MTN_NEW);
+    var peakPool = buildPool(PEAK_SAFE, PEAK_NEW);
     var skyPool = buildPool(SKY_SAFE, SKY_NEW);
     var forPool = buildPool(FOR_SAFE, FOR_NEW);
 
@@ -61,14 +61,16 @@
     var decid = 0.45 + Math.random() * 0.35;
     for (var c = 0; c < W; c++) {
       g[0][c] = g[1][c] = g[2][c] = SKY;
-      g[3][c] = pick(mtnPool);                                // ridge: totally random mountains
+      g[3][c] = '🗻';                                          // ridge: default Mount Fuji
       for (var r2 = 4; r2 < 8; r2++) g[r2][c] = Math.random() < decid ? '🌳' : '🌲';
       g[8][c] = GND;
     }
 
     // volcanoes punctuate the ridge (and define dragon keep-out columns)
     var volc = [];
-    placeGap(g, [3], ['🌋'], ri(3, 7), volc, 26);
+    placeGap(g, [3], ['🌋'], ri(3, 6), volc, 12);          // volcanoes — define dragon keep-out
+    var peakOcc = volc.slice();                            // special peaks: scattered, none adjacent
+    placeGap(g, [3], peakPool, ri(12, 22), peakOcc, 4);
 
     // forest: eggs always, a house or two, a few rare specials, then rocks + bare trees
     var fcols = [];
@@ -93,7 +95,7 @@
         for (var cc = 0; cc < W && dn < 2; cc++)
           if (g[rr][cc] === SKY) { g[rr][cc] = '🐉'; dn++; }
     }
-    placeSky(g, skyPool, ri(5, 11), volc, false);           // eagle, bat, ufo, planet, weather...
+    placeSky(g, skyPool, ri(5, 11), volc, true);            // eagle, bat, ufo... kept off the volcanoes
     placeSky(g, ['☁️'], ri(8, 26), volc, false);
     placeSky(g, ['✨'], ri(22, 70), volc, false);
 
