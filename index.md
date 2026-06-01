@@ -15,7 +15,7 @@ layout: default
 </pre>
 <script src="/assets/mural.js"></script>
 
-# 🐉 Pseudodragon Swarm
+# Pseudodragon Swarm 🐉
 
 **A tiny, self-hosted swarm of AI agents you run on your own Linux box — the Unix way.**
 
