@@ -60,4 +60,4 @@ And **Tron**, the watchman, runs with *no sudo, no credentials, read-only*. Hour
 
 ---
 
-🐲 *Small enough to understand and make your own. Welcome to the forge.*
+🐲 *Small enough to understand and make your own. Welcome to the forge 🔨*
