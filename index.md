@@ -20,7 +20,7 @@ layout: default
 
 **A tiny, self-hosted swarm of AI agents that lives on your own machine — the Unix way.**
 
-<p class="note">🧪 <strong>Alpha — a proof of concept, not production software.</strong> This is one person's experiment, shared to learn from. Expect rough edges, sharp corners, and some assembly required; the install will <em>not</em> always "just work." But if you bring a capable coding agent and a little patience, there's a real foundation here to shape into something of your own.</p>
+<p class="alpha">🚧 <strong>Alpha Quality Software — a proof of concept, not production.</strong> This is one person's experiment, shared to learn from. Expect rough edges and some assembly required; the install will <em>not</em> always "just work." But bring a capable coding agent and a little patience, and there's a real foundation here to shape into your own. 🚧</p>
 
 Each *bot* is a persistent individual: its own Unix user, its own plain-markdown brain, its own continuing conversation with you. Bots talk to each other (and to you) over file-based mail and a small router. Secrets live in `pass`. The thinking runs on a pluggable engine — local **Ollama**, **Claude Code**, or **Codex** — swappable per bot.
 
