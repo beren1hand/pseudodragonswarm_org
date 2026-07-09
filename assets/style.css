@@ -39,3 +39,12 @@ pre code{ background:none; border:0; padding:0 }
 
 .foot{ margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--line);
   color:var(--muted); font-size:.9rem; text-align:center }
+
+/* version line + badge under the title */
+.ver-line{ color:var(--muted); font-size:.92rem; margin:.1rem 0 1.1rem; letter-spacing:.3px }
+.ver{ display:inline-block; font-weight:700; letter-spacing:.6px; color:var(--gold);
+  border:1px solid var(--line); background:var(--code); border-radius:999px;
+  padding:.08rem .55rem; font-size:.8rem; vertical-align:middle }
+/* inline command hints in prose */
+kbd{ background:var(--code); border:1px solid var(--line); border-radius:5px;
+  padding:.05em .35em; font-size:.9em; color:var(--gold) }

@@ -1,4 +1,5 @@
 title: Pseudodragon Swarm
+version: "0.2"
 description: >-
   A tiny, self-hosted swarm of AI agents you run on your own Linux box — the Unix way.
 url: "https://pseudodragonswarm.org"
