@@ -48,3 +48,7 @@ pre code{ background:none; border:0; padding:0 }
 /* inline command hints in prose */
 kbd{ background:var(--code); border:1px solid var(--line); border-radius:5px;
   padding:.05em .35em; font-size:.9em; color:var(--gold) }
+/* callout box (alpha notice, caveats) */
+.note{ background:var(--code); border:1px solid var(--line); border-left:3px solid var(--ember);
+  border-radius:8px; padding:.75rem .95rem; margin:1.1rem 0; font-size:.95rem }
+.note strong{ color:var(--gold) }

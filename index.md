@@ -20,6 +20,8 @@ layout: default
 
 **A tiny, self-hosted swarm of AI agents that lives on your own machine — the Unix way.**
 
+<p class="note">🧪 <strong>Alpha — a proof of concept, not production software.</strong> This is one person's experiment, shared to learn from. Expect rough edges, sharp corners, and some assembly required; the install will <em>not</em> always "just work." But if you bring a capable coding agent and a little patience, there's a real foundation here to shape into something of your own.</p>
+
 Each *bot* is a persistent individual: its own Unix user, its own plain-markdown brain, its own continuing conversation with you. Bots talk to each other (and to you) over file-based mail and a small router. Secrets live in `pass`. The thinking runs on a pluggable engine — local **Ollama**, **Claude Code**, or **Codex** — swappable per bot.
 
 It's built entirely from boring, battle-hardened parts — **bash, python3 (stdlib only), systemd, pass/gnupg, git, ollama** — with no frameworks, no `pip` installs, and no paid services required to start. You can read every line.
@@ -40,17 +42,19 @@ A bot **is a session** — a continuing self whose memory carries forward and co
 - 🔐 **Pluggable secrets** — `pass` by default (offline, zero accounts), 1Password as a drop-in.
 - 🛡️ **Supervised by systemd** — bots survive reboots and crashes.
 
-## Talk to the greats 📚
+## Talk to the greats 📚 — the GPPs
 
-Point a bot at a corpus and it answers *from the texts* — quoted and cited, never made up. Ask for the reading room:
+**GPP** stands for **Genuine People Personalities** — a wink to Douglas Adams's *Hitchhiker's Guide to the Galaxy*, where the Sirius Cybernetics Corporation bolted "GPP" onto its robots (and gave us Marvin, who has a seat in this swarm). Point a bot at a corpus and it answers *from the texts* — quoted and cited, never made up:
 
 ```sh
 pseudodragon gpp                # list the personalities
-pseudodragon gpp nietzsche      # talk to Nietzsche now — grounded in his own works
+pseudodragon gpp nietzsche      # talk to Nietzsche — grounded in his own works
 pseudodragon gpp promote socrates   # keep him: a standing bot who remembers you
 ```
 
-Reading lists are **virtual groups** — a single author, a whole school, or an entire tradition — expanded on the fly by a local corpus gateway (retrieval over your own indexed texts). A personality is a lens over that corpus plus a voice; adding one is a line of config, not a new server.
+Reading lists are **virtual groups** — a single author, a whole school, or an entire tradition — expanded on the fly by a local corpus gateway. A personality is a lens over that corpus plus a voice; adding one is a line of config, not a new server.
+
+> **The swarm ships the machinery, not the library.** There's a corpus gateway and an ingest path, but **no texts come bundled** — you and your bots gather and index the works you want (public-domain sources, your own PDFs, transcripts). Nietzsche won't answer until you've fed him some Nietzsche. That legwork is part of the point: it's *your* reading room.
 
 ## More than a terminal 🌐
 
@@ -81,7 +85,7 @@ cd pseudodragon-swarm
 ./setup
 ```
 
-A short, friendly wizard asks a few questions and stands up a working swarm. A minute later:
+A wizard walks you through it. On a good day you're talking to your first bot minutes later; on a less good day, you and your agent roll up your sleeves and debug it together — that's alpha, and honestly half the fun. When it's up:
 
 ```sh
 pseudodragon say jane "what can you help me with?"
