@@ -80,7 +80,7 @@ And **Tron**, the watchman, runs with *no sudo, no credentials, read-only*. Hour
 ## Quickstart 🚀
 
 ```sh
-git clone <repo-url> pseudodragon-swarm
+git clone https://github.com/beren1hand/pseudodragonswarm pseudodragon-swarm
 cd pseudodragon-swarm
 ./setup
 ```
