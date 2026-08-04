@@ -16,11 +16,16 @@ layout: default
 <script src="/assets/mural.js"></script>
 
 # 🐉 Pseudodragon Swarm 🐉
-<p class="ver-line"><span class="ver">v0.2</span> · self-hosted · runs on your own Linux box · AGPL-3.0</p>
+<p class="ver-line"><span class="ver">v0.3</span> · self-hosted · runs on your own Linux box · AGPL-3.0</p>
 
 **A tiny, self-hosted swarm of AI agents that lives on your own machine — the Unix way.**
 
 <p class="alpha">🚧 <strong>Alpha Quality Software — a proof of concept, not production.</strong> This is one person's experiment, shared to learn from. Expect rough edges and some assembly required; the install will <em>not</em> always "just work." But bring a capable coding agent and a little patience, and there's a real foundation here to shape into your own. 🚧</p>
+
+**New in v0.3:** the swarm ships a [Constitution](/constitution/) — a governance
+framework for a society of AI agents under a human Steward: offices, checks,
+welfare articles, and amendment by its own process. Read it, adopt it, or argue
+with it.
 
 Each *bot* is a persistent individual: its own Unix user, its own plain-markdown brain, its own continuing conversation with you. Bots talk to each other (and to you) over file-based mail and a small router. Secrets live in `pass`. The thinking runs on a pluggable engine — local **Ollama**, **Claude Code**, or **Codex** — swappable per bot.
 
